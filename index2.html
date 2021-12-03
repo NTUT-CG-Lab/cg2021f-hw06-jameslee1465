@@ -21,8 +21,8 @@ A<!DOCTYPE html>
 			<p>Change Model</p>
 			<!--<button value="index.html">Load Model</button>-->
 			<select onChange="location = this.options[this.selectedIndex].value;">
-				<option value="./index.html">dolphin</option>
 				<option value="./index2.html">ox</option>
+				<option value="./index.html">dolphin</option>
 			</select>
 		</div>
 
@@ -136,13 +136,13 @@ A<!DOCTYPE html>
 				
 				models.forEach((el) =>
 					loader.load(
-						`./models/dolphin/model_${el.toString()}.ply`,
+						`./models/ox/model_${el.toString()}.ply`,
 						function (geometry) {
 						geometry.computeVertexNormals();
 						const mesh = new THREE.Mesh(geometry, material);
 						mesh.name = el;
-						mesh.position.set(0.5, -0.5, 0);
-						mesh.scale.multiplyScalar(1.5);
+						mesh.position.set(0.5, 0, 0);
+						mesh.scale.multiplyScalar(0.5);
 						mesh.castShadow = true;
 						mesh.receiveShadow = true;
 
@@ -177,7 +177,7 @@ A<!DOCTYPE html>
 				.onChange(iterChanger);
 
 				// Load original model according to model_id
-				loader.load("./models/dolphin.ply", function (geometry) {
+				loader.load("./models/ox.ply", function (geometry) {
 					const material = new THREE.MeshPhongMaterial({
 						color: 0xff5555,
 						specular: 0x111111,
@@ -187,8 +187,9 @@ A<!DOCTYPE html>
 
 					const mesh = new THREE.Mesh(geometry, material);
 
-					mesh.position.set(-0.5, -0.5, 0);
-					mesh.scale.multiplyScalar(1.5);
+					mesh.position.set(-0.5, 0, 0);
+					mesh.scale.multiplyScalar(0.5);
+					mesh.rotation.set(-Math.PI/2,0,-Math.PI);
 
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
@@ -200,15 +201,15 @@ A<!DOCTYPE html>
 				// const material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
 				
 				// Load models of pytorch3d 
-				loader.load( './models/dolphin/model_2000.ply', 
+				loader.load( './models/ox/model_2000.ply', 
 				function ( geometry ) {
 
 					geometry.computeVertexNormals();
 
                     const mesh = new THREE.Mesh( geometry, material );
 
-                    mesh.position.set( 0.5, -2, 0 );
-					mesh.scale.multiplyScalar( 1.5 );
+                    mesh.position.set( 1,-5, 0 );
+					mesh.scale.multiplyScalar( 0.5 );
 
                     mesh.castShadow = true;
                     mesh.receiveShadow = true;
